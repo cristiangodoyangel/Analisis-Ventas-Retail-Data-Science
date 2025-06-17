@@ -1,11 +1,13 @@
+
 import numpy as np
+import pandas as pd
 
-def cargar_datos("https://drive.google.com/file/d/1hGkCT1u3b1FzGSSLi5bL2XAIpTy2IBK3/view?usp=drive_link"):
-    # Carga los datos del archivo CSV utilizando NumPy
-    datos = np.genfromtxt(ruta_archivo, delimiter=',', skip_header=1)
-    return datos
 
-if __name__ == "__main__":
-    ruta_archivo = '../data/retail_sales.csv'
-    datos = cargar_datos(ruta_archivo)
-    print(datos)
+# Importamos una bbdd en formato excel y lo guardamos en una variable.
+path = r"C:\Users\StarMan\Desktop\DataScience\Proyecto\retail_sales_dataset.csv"
+df_1 = pd.read_csv(path)
+
+print(df_1.head())
+
+
+
