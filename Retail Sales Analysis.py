@@ -115,3 +115,5 @@ def desviacion_personalizada(x):
     return x['Total Amount'] - media
 
 df_1['Desviación_vs_Media'] = df_1.groupby('Product Category', group_keys=False).apply(desviacion_personalizada)
+
+# se termina Core 2
