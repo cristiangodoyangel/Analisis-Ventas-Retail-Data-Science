@@ -187,3 +187,58 @@ plt.ylabel('Total Vendido')
 plt.show()
 
 # se termina core 4
+
+
+# Matriz de correlación solo para variables numéricas
+correlacion = df_1.corr(numeric_only=True)
+
+# Visualización con mapa de calor
+plt.figure(figsize=(10,6))
+sns.heatmap(correlacion, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Mapa de Calor - Correlación entre Variables Numéricas')
+plt.show()
+
+
+fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+
+# Histograma Total Amount
+axs[0, 0].hist(df_1['Total Amount'], bins=20, color='skyblue', edgecolor='black')
+axs[0, 0].set_title('Histograma - Total Amount')
+axs[0, 0].grid()
+
+# Boxplot Price per Unit
+axs[0, 1].boxplot(df_1['Price per Unit'], vert=True)
+axs[0, 1].set_title('Boxplot - Price per Unit')
+
+# Scatter Total Amount vs Quantity
+axs[1, 0].scatter(df_1['Quantity'], df_1['Total Amount'], alpha=0.6)
+axs[1, 0].set_title('Cantidad vs Total Vendido')
+axs[1, 0].set_xlabel('Cantidad')
+axs[1, 0].set_ylabel('Total')
+axs[1, 0].grid()
+
+# Total Vendido por categoría
+df_1.groupby('Product Category')['Total Amount'].sum().plot(kind='bar', ax=axs[1, 1])
+axs[1, 1].set_title('Ventas Totales por Categoría')
+axs[1, 1].tick_params(axis='x', rotation=45)
+
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(12,6))
+ventas_por_fecha.plot()
+plt.title('Tendencia de Ventas en el Tiempo')
+plt.xlabel('Fecha')
+plt.ylabel('Total Vendido')
+plt.grid()
+
+# Agregamos una anotación con flecha
+fecha_pico = ventas_por_fecha.idxmax()
+valor_pico = ventas_por_fecha.max()
+plt.annotate('Máximo', xy=(fecha_pico, valor_pico),
+             xytext=(fecha_pico, valor_pico + 50),
+             arrowprops=dict(facecolor='green', shrink=0.05),
+             fontsize=10)
+
+plt.show()
