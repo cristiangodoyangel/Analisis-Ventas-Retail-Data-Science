@@ -185,3 +185,5 @@ plt.title('Boxplot de Ventas por Categoría de Producto')
 plt.xlabel('Categoría de Producto')
 plt.ylabel('Total Vendido')
 plt.show()
+
+# se termina core 4
