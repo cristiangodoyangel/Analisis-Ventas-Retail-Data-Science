@@ -116,4 +116,5 @@ def desviacion_personalizada(x):
 
 df_1['Desviación_vs_Media'] = df_1.groupby('Product Category', group_keys=False).apply(desviacion_personalizada)
 
-# se termina Core 2
+# se cumple Core 4
+# git y commit
