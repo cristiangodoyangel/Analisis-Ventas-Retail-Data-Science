@@ -1,6 +1,9 @@
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 
 # Importamos una bbdd en formato excel y lo guardamos en una variable.
@@ -118,3 +121,124 @@ df_1['Desviación_vs_Media'] = df_1.groupby('Product Category', group_keys=False
 
 # se cumple Core 4
 # git y commit
+
+# Histograma de Total Amount
+plt.hist(df_1['Total Amount'], bins=20, color='skyblue', edgecolor='black')
+plt.title('Histograma - Total Amount')
+plt.xlabel('Total Amount')
+plt.ylabel('Frecuencia')
+plt.show()
+
+# Boxplot de Price per Unit
+plt.boxplot(df_1['Price per Unit'])
+plt.title('Boxplot - Price per Unit')
+plt.ylabel('Precio')
+plt.show()
+
+
+df_1['Date'] = pd.to_datetime(df_1['Date'])
+
+ventas_por_fecha = df_1.groupby('Date')['Total Amount'].sum()
+
+plt.figure(figsize=(12,6))
+ventas_por_fecha.plot()
+plt.title('Tendencia de Ventas en el Tiempo')
+plt.xlabel('Fecha')
+plt.ylabel('Total Vendido')
+plt.grid()
+plt.show()
+
+
+plt.scatter(df_1['Price per Unit'], df_1['Total Amount'], alpha=0.6)
+plt.title('Relación Precio vs Total Vendido')
+plt.xlabel('Price per Unit')
+plt.ylabel('Total Amount')
+plt.grid()
+plt.show()
+
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), gridspec_kw={'height_ratios': [4, 1]})
+
+# Histograma
+ax1.hist(df_1['Total Amount'], bins=20, color='skyblue', edgecolor='black')
+ax1.set_title('Distribución de Ventas')
+
+# Boxplot
+ax2.boxplot(df_1['Total Amount'], vert=False)
+ax2.set_title('Boxplot de Ventas')
+
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(12,6))
+sns.boxplot(x='Product Category', y='Total Amount', data=df_1)
+plt.title('Boxplot de Ventas por Categoría de Producto')
+plt.xlabel('Categoría de Producto')
+plt.ylabel('Total Vendido')
+plt.show()
+
+
+plt.figure(figsize=(12,6))
+sns.boxplot(x='Product Category', y='Total Amount', data=df_1)
+plt.title('Boxplot de Ventas por Categoría de Producto')
+plt.xlabel('Categoría de Producto')
+plt.ylabel('Total Vendido')
+plt.show()
+
+# se termina core 4
+
+
+# Matriz de correlación solo para variables numéricas
+correlacion = df_1.corr(numeric_only=True)
+
+# Visualización con mapa de calor
+plt.figure(figsize=(10,6))
+sns.heatmap(correlacion, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Mapa de Calor - Correlación entre Variables Numéricas')
+plt.show()
+
+
+fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+
+# Histograma Total Amount
+axs[0, 0].hist(df_1['Total Amount'], bins=20, color='skyblue', edgecolor='black')
+axs[0, 0].set_title('Histograma - Total Amount')
+axs[0, 0].grid()
+
+# Boxplot Price per Unit
+axs[0, 1].boxplot(df_1['Price per Unit'], vert=True)
+axs[0, 1].set_title('Boxplot - Price per Unit')
+
+# Scatter Total Amount vs Quantity
+axs[1, 0].scatter(df_1['Quantity'], df_1['Total Amount'], alpha=0.6)
+axs[1, 0].set_title('Cantidad vs Total Vendido')
+axs[1, 0].set_xlabel('Cantidad')
+axs[1, 0].set_ylabel('Total')
+axs[1, 0].grid()
+
+# Total Vendido por categoría
+df_1.groupby('Product Category')['Total Amount'].sum().plot(kind='bar', ax=axs[1, 1])
+axs[1, 1].set_title('Ventas Totales por Categoría')
+axs[1, 1].tick_params(axis='x', rotation=45)
+
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(12,6))
+ventas_por_fecha.plot()
+plt.title('Tendencia de Ventas en el Tiempo')
+plt.xlabel('Fecha')
+plt.ylabel('Total Vendido')
+plt.grid()
+
+# Agregamos una anotación con flecha
+fecha_pico = ventas_por_fecha.idxmax()
+valor_pico = ventas_por_fecha.max()
+plt.annotate('Máximo', xy=(fecha_pico, valor_pico),
+             xytext=(fecha_pico, valor_pico + 50),
+             arrowprops=dict(facecolor='green', shrink=0.05),
+             fontsize=10)
+
+plt.show()
