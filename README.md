@@ -1,51 +1,97 @@
 # 🛍️ Análisis de Ventas Minoristas con Python y Pandas
 
-Este proyecto forma parte de mi formación en ciencia de datos. El objetivo es aplicar técnicas de análisis exploratorio, transformación de datos, agregación y funciones personalizadas usando Python y la librería Pandas sobre un dataset de ventas retail.
+
+# 🛒 Retail Sales Analysis - Data Science Project
+
+> Exploración, visualización y análisis avanzado de datos de ventas retail con Python.  
+> Proyecto realizado como parte de la formación en ciencia de datos.
+
+---
+
+## 📊 Descripción del Proyecto
+
+Este proyecto tiene como objetivo analizar un conjunto de datos de ventas minoristas utilizando técnicas de análisis exploratorio de datos (EDA), visualización avanzada y categorización. El análisis busca responder preguntas clave sobre comportamiento de compras, categorías más vendidas, variaciones por género, tendencias en el tiempo, y más.
 
 ---
 
 ## 📁 Dataset
 
-El dataset utilizado contiene información sobre ventas minoristas, con variables como:
-
-- `Product Category` (categoría del producto)
-- `Gender` (género del cliente)
-- `Total Amount` (monto total de la venta)
-- Entre otras columnas relevantes
-
----
-
-## 🧾 Objetivos del Proyecto
-
-- Realizar una **exploración inicial** del dataset
-- Aplicar **limpieza y transformación de datos**
-- Generar **agrupaciones y estadísticas descriptivas**
-- Implementar **funciones personalizadas con `apply()`**
-- Clasificar ventas y normalizar columnas para análisis comparativo
+- **Archivo:** `retail_sales_dataset.csv`  
+- **Origen:** Almacenado en Google Drive o localmente.  
+- **Columnas principales:**
+  - `Date` – Fecha de la transacción
+  - `Product Category` – Categoría del producto
+  - `Gender` – Género del comprador
+  - `Quantity` – Cantidad comprada
+  - `Price per Unit` – Precio unitario
+  - `Total Amount` – Precio total de la venta
 
 ---
 
-## 🔎 Exploración de Datos
+## 🔍 Análisis Realizado
 
-- Se visualizan las primeras y últimas filas del dataset.
-- Se examinan los tipos de datos, valores únicos y estadísticas generales.
-- Se realizan filtros por condiciones específicas (e.g. ventas mayores a 150).
+### ✅ Parte I: Carga y Exploración Inicial
+- Carga del CSV usando `pandas`
+- Verificación de las primeras y últimas filas
+- Tipos de datos y valores únicos por columna
+- Estadísticas descriptivas generales
+
+### ✅ Parte II: Filtrados y Consultas
+- Ventas mayores a $150 y menores a $100
+- Filtrado por categoría (`Electronics`) y total vendido
+- Ventas por género y producto
+
+### ✅ Parte III: Transformaciones
+- Normalización de `Total Amount`
+- Clasificación de ventas en niveles: `Baja`, `Media`, `Alta`
+- Cálculo de desviación respecto a la media por categoría
+
+### ✅ Parte IV: Visualización Avanzada
+- Histogramas, boxplots y scatter plots
+- Series temporales de ventas
+- Comparaciones por género y categoría
+- Subplots personalizados con `matplotlib`
+- Heatmap de correlación entre variables numéricas
 
 ---
 
-## 🧹 Transformación de Datos
+## 📈 Visualizaciones Destacadas
 
-- Se normaliza la columna `Total Amount` a un rango de 0 a 1.
-- Se crea una nueva columna `Nivel_Venta` que clasifica cada venta como:
-  - `Alta` (≥ 200)
-  - `Media` (100–199)
-  - `Baja` (< 100)
+| Gráfico                          | Descripción                              |
+|----------------------------------|------------------------------------------|
+| 📊 Histograma                    | Distribución de montos de venta          |
+| 📦 Boxplot por Producto          | Identificación de outliers por categoría |
+| 📆 Línea Temporal                | Tendencia de ventas en el tiempo         |
+| 🔥 Heatmap de Correlación        | Relación entre variables numéricas       |
+| 🧑‍🤝‍🧑 Scatter Género vs Monto      | Comportamiento por tipo de cliente       |
+
+---
+
+## 🧮 Tecnologías Utilizadas
+
+- `Python 3.x`
+- `NumPy`
+- `Pandas`
+- `Matplotlib`
+- `Seaborn`
+- `Jupyter Notebook / Google Colab`
+
+---
+
+## 🛠 Estructura del Código
 
 ```python
-def clasificar_venta(valor):
-    if valor >= 200:
-        return 'Alta'
-    elif valor >= 100:
-        return 'Media'
-    else:
-        return 'Baja'
+# 1. Carga y descripción
+df = pd.read_csv('retail_sales_dataset.csv')
+
+# 2. Transformaciones
+df['Total_Normalized'] = ...
+df['Nivel_Venta'] = ...
+
+# 3. Agrupaciones y estadísticas
+df.groupby([...])...
+
+# 4. Visualizaciones
+plt.hist(...)
+sns.boxplot(...)
+sns.heatmap(...)
