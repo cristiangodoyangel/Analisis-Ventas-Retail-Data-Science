@@ -95,3 +95,27 @@ df.groupby([...])...
 plt.hist(...)
 sns.boxplot(...)
 sns.heatmap(...)
+```
+
+## 🧠 Modelos Utilizados
+Regresión Logística
+
+K-Nearest Neighbors (KNN)
+
+Árbol de Decisión
+
+Random Forest ✅
+
+XGBoost
+
+LightGBM
+
+El modelo final seleccionado fue Random Forest, logrando una precisión del 100% sobre el conjunto de prueba (verificada sin data leakage).
+
+## 👥 Autor
+Cristian Andrés Godoy Angel
+El Pastor
+
+🪪 Licencia
+Este proyecto se distribuye bajo la licencia MIT.
+Puedes utilizarlo libremente para fines académicos, comerciales o personales, siempre y cuando se mencione la autoría.
