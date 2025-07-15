@@ -114,7 +114,7 @@ El modelo final seleccionado fue Random Forest, logrando una precisión del 100%
 
 ## 👥 Autor
 Cristian Andrés Godoy Angel
-El Pastor
+
 
 🪪 Licencia
 Este proyecto se distribuye bajo la licencia MIT.
